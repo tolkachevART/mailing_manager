@@ -25,22 +25,22 @@ class MailingCreateView(CreateView):
     model = Mailing
     fields = ['clients', 'message', 'periodicity', 'status']
     success_url = reverse_lazy('mailings:mailing_detail')
-    template_name = 'mailings/mailing_form.html'
+    template_name = 'mailing/mailing_form.html'
 
     def form_valid(self, form):
         mailing = form.save()
-        return redirect('mailings:mailing_detail', mailing.pk)
+        return redirect('mailing:mailing_detail', mailing.pk)
 
 
 class MailingUpdateView(UpdateView):
     model = Mailing
     fields = ['clients', 'message', 'periodicity', 'status']
-    template_name = 'mailings/mailing_form.html'
+    template_name = 'mailing/mailing_form.html'
 
     def get_success_url(self):
-        return reverse('mailings:mailing_detail', kwargs={'pk': self.object.pk})
+        return reverse('mailing:mailing_detail', kwargs={'pk': self.object.pk})
 
 
 class MailingDeleteView(DeleteView):
     model = Mailing
-    success_url = reverse_lazy('mailings:mailing_list')
+    success_url = reverse_lazy('mailing:mailing_list')
